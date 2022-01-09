@@ -32,6 +32,7 @@ final CollectionReference _productsRef = FirebaseFirestore.instance.collection("
                     bottom: 12.0,
                   ),
                   children: snapshot.data!.docs.map((document){ ////the original error without (!) before (.docs)
+                    print(document);
                     return GestureDetector(
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(
@@ -68,7 +69,7 @@ final CollectionReference _productsRef = FirebaseFirestore.instance.collection("
                                   mainAxisAlignment:MainAxisAlignment.spaceBetween ,
                                   children: [
                                     Text(
-                                      document.data()['name']??"Product Name",
+                                      "\$${document.data() ?? ['name']}"??"Product Name",
                                     style: Constants.regularHeading,
                                     ),
                                     Text(
