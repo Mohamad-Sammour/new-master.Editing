@@ -2,7 +2,7 @@ import 'package:untitled/Widget/image_swipe.dart';
 import 'package:untitled/constants.dart';
 import 'package:untitled/services/firebase_services.dart';
 import 'package:untitled/widget/custom_action_bar.dart';
-import 'package:untitled/widget/image_swipe.dart';
+import "package:untitled/widget/image_swipe.dart";
 import 'package:untitled/widget/product_size.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +15,7 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+
   FirebaseServices _firebaseServices = FirebaseServices();
   String _selectedProductSize = "0";
 
@@ -54,10 +55,10 @@ class _ProductPageState extends State<ProductPage> {
 
               if (snapshot.connectionState == ConnectionState.done) {
                 // Firebase Document Data Map
-                Map<String, dynamic> documentData = snapshot.data.data();
+                Map<String, dynamic> documentData = snapshot.data.toString() as Map<String, dynamic>;
 
                 // List of images
-                List imageList = documentData['images'];
+                List imageList= documentData['images'];
                 List productSizes = documentData['size'];
 
                 // Set an initial size
@@ -66,9 +67,27 @@ class _ProductPageState extends State<ProductPage> {
                 return ListView(
                   padding: EdgeInsets.all(0),
                   children: [
-                    ImageSwip(
+                    Container(
+                      height:400.0,
+                      child:PageView(
+                        children: [
+                          for(var i=0;i<imageList.length;i++)
+                            Container(
+                              child: Image.network(
+                                  "${imageList[i]}",
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                        ],
+                      )
+                    ),
+
+/*
+                    ImageSwipe(
                       imageList: imageList,
                     ),
+*/
+
                     Padding(
                       padding: const EdgeInsets.only(
                         top: 24.0,
@@ -77,7 +96,7 @@ class _ProductPageState extends State<ProductPage> {
                         bottom: 4.0,
                       ),
                       child: Text(
-                        "${documentData['name']}",
+                        "${documentData['name']}" ,
                         style: Constants.boldHeading,
                       ),
                     ),
@@ -87,7 +106,7 @@ class _ProductPageState extends State<ProductPage> {
                         horizontal: 24.0,
                       ),
                       child: Text(
-                        "\$${documentData['price']}",
+                        "\$${documentData['price']}" ,
                         style: TextStyle(
                           fontSize: 18.0,
                           color: Theme.of(context).accentColor,

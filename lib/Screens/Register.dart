@@ -98,7 +98,7 @@ class _RegisterState extends State<Register> {
   String _Registeremail="";
   String _Registerpassword= " ";
   late int PhoneNumber;
-  String Sex="";
+
   late int Date;
 
   //Focus Node For Input Field
@@ -192,16 +192,14 @@ class _RegisterState extends State<Register> {
                     textInputAction: TextInputAction.next,
                   ),
 
-                  CustomInput(
+/*
+                 CustomInput(
                     hintText: "Sex..",
                     onChanged: (Value){
                       Sex;
-
                     }
-
-
-
                   ),
+*/
 
                   CustomInput(
                     hintText: "Birth-Date..",

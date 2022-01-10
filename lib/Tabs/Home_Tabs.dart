@@ -7,7 +7,8 @@ import 'package:untitled/constants.dart';
 
 
 class HomeTab extends StatelessWidget {
-final CollectionReference _productsRef = FirebaseFirestore.instance.collection("Products");
+final CollectionReference _productsRef =
+FirebaseFirestore.instance.collection("Products");
   @override
   Widget build(BuildContext context) {
     return Container(

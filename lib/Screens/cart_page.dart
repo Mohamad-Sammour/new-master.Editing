@@ -57,7 +57,7 @@ class _CartPageState extends State<CartPage> {
                           }
 
                           if(productSnap.connectionState == ConnectionState.done) {
-                            Map _productMap = productSnap.data.data();
+                            Map _productMap = productSnap.data.toString() as Map;
 
                             return Padding(
                               padding: const EdgeInsets.symmetric(
